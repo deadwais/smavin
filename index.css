@@ -1,0 +1,50 @@
+body{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+.langue{
+    display: flex;
+    flex-direction: column;
+}
+.container{
+   margin-left: none;
+   padding-left: 30px;
+   margin-left: 50px;
+}
+
+.add{
+    margin: auto;
+    padding: auto;
+}
+.table td, .table th{
+    padding: 0.1rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+}
+.hat{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;}
+.hat .divhead{
+    margin: auto;
+    display: flex;
+}
+.divhead{
+    width: 85%;
+    border: 0;
+    justify-content: space-between;
+}
+table{
+    border-collapse: collapse;
+}
+th, tr {
+    border: 1px solid black;
+    padding: 10px;
+}

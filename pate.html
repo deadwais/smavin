@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fer.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="border" style="
+        width: 20rem;
+        border-radius: 10px;">
+        <div>matricule:</div>
+        <div>nam:</div>
+        <div>Lastname:</div>
+        <div>mention:</div>
+        <div>Niveau:</div>
+        <div>monton_brut:</div>
+        <div>date_last_pay:</div>
+        <div>payement:</div>
+        <div>reste:</div>
+        <div>tranche:</div>
+        <div>Atestation:</div>
+        <div>Action:</div>
+    </div>
+    <div class="border" style="
+        width: 20rem;
+        border-radius: 10px;">
+        <tr id="tr-<?php echo $row['id']; ?>">
+        <div>matricule:<?php echo $row['matricul'] ?></div>
+        <div>nam:<?php echo $row['nam'] ?></div>
+        <div>Lastname:<?php echo $row['lastname'] ?></div>
+        <div>mention:<?php echo $row['mention'] ?></div>
+        <div>Niveau:<?php echo $row['niveau'] ?></div>
+        <div>monton_brut:<?php echo $row['date_last_pay'] ?></div>
+        <div>date_last_pay:<?php echo $row['date_last_pay'] ?></div>
+        <div>payement:<?php echo $row['payement'] ?></div>
+        <div>reste:<?php echo $row['reste'] ?></div>
+        <div>tranche:<?php echo $row['tranche'] ?></div>
+        <div>Atestation:<?php echo $row['atestation'] ?></div>
+        <div>Action:<a class="btn" href="edit.php?id=' . $row['id'] . '">Read</a><a class="btn btn-success" href="update.php?id=' . $row['id'] . '">Update</a><a class="btn btn-danger" href="javascript:delet(<?php echo $row['id']?>)">Delete</a> </div>
+        </tr>   
+    </div>
+</body>
+</html>

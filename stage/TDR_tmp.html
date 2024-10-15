@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TDR.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<hr>
+<h1 id="center-proposition-de-recherche-center"><center> PROPOSITION DE RECHERCHE </center></h1>
+<h2 id="titre-de-letude--conception-et-realisation-dun-logiciel-web-pour-lassosiation-des-femmes-%C3%A0-savondroany">Titre de l'etude : Conception et realisation d'un logiciel web pour l'assosiation des femmes à Savondroany</h2>
+<h2 id="1-contexte">1. CONTEXTE</h2>
+<h3 id="dans-un-petit-village-appelle%C3%A9-savondroany-il-y-a-une-assossiation-des-femmes-qui-sont-%C3%A9t%C3%A9-cr%C3%A9e-pour-prot%C3%A9ger-leur-for%C3%A8t-contre-le-charbon-le-tavy-lutilisation-des-feu-de-boisetc-depuis-toujour-cette-assossiation-ne-cest-jammais-arrete%C3%A9-de-grandir-et-avec-les-financements-de-madagascar-nationnal-parcs-ils-navaient-pas-des-probl%C3%A8mes-sur-le-plan-%C3%A9conomique-tout-allaient-bien">Dans un petit village appelleé Savondroany, il y a une assossiation des femmes qui sont été crée pour protéger leur forèt contre le charbon ,le tavy ,l'utilisation des feu de bois,etc... Depuis toujour cette assossiation ne c'est jammais arreteé de grandir et avec les financements de Madagascar Nationnal Parcs, ils n'avaient pas des problèmes sur le plan économique, tout allaient bien.</h3>
+<h3 id="mais-le-pire-est-arriv%C3%A9e-le-septembre-2022-tout-financement-cest-arret%C3%A9e-les-probl%C3%A8mes-de-financement-arrivaients-petite-%C3%A0-petite">Mais le pire est arrivée, le septembre 2022, tout financement c'est arretée, les problèmes de financement arrivaients petite à petite.</h3>
+<h3 id="du-coup-lassossiation-ont-%C3%A9ssaye%C3%A9-de-faire-ce-quelles-pouvaient-pour-trouver-des-moyens-pour-le-financement-les-membres-ont-boucoup-de-talent-mais-savondroany-est-un-petit-village-reculer-dans-la-campagne-du-coups-trouver-du-marcher-nest-pas-un-jeux-denfant-elles-pouvaient-plus-aller-plus-loin-sans-une-moyen-pour-vulgariser-leur-produit-leur-foret-leur-assotiation-et-leur-talent">Du coup l'assossiation ont éssayeé de faire ce qu'elles pouvaient pour trouver des moyens pour le financement. Les membres ont boucoup de talent, mais Savondroany est un petit village reculer dans la campagne, du coups trouver du marcher n'est pas un jeux d'enfant. Elles pouvaient plus aller plus loin sans une moyen pour vulgariser leur produit, leur foret, leur assotiation et leur talent.</h3>
+<h3 id="cest-pourquoi-je-fait-le-proposition-de-ce-proj%C3%A8t-et-en-esp%C3%A8rent-quil-irrait-changer-les-donnes-ce-proj%C3%A8t-irrat-vulgariser-tout-les-merveuil-de-savondroany-et-den-finir-avec-le-titre-de-village-r%C3%A9culer-dans-la-compagne">C'est pourquoi je fait le proposition de ce projèt et en espèrent qu'il irrait changer les donnes, ce projèt irrat vulgariser  tout les merveuil de savondroany et d'en finir avec le titre de village réculer dans la compagne.</h3>
+<h2 id="2-objectif-general">2. OBJECTIF GENERAL</h2>
+<h3 id="vulgarise%C3%A9-savondroany-et-les-atouts-que-ses-femmes-avient">Vulgariseé Savondroany et les atouts que ses femmes avient.</h3>
+<h2 id="3-objectif-specifiques">3. OBJECTIF SPECIFIQUES</h2>
+<h3 id="il-y-aurait-un-cites-vitrine-pour-le-village-les-activit%C3%A9s-local-lassociation-et-ses-atout">. Il y aurait un cites vitrine pour le village, les activités local, l'association et ses atout.</h3>
+<h3 id="un-blogs-qui-afficherat-les-actuallit%C3%A9s">. Un blogs qui afficherat les actuallités.</h3>
+<h3 id="une-page-contacte-pour-afficher-les-personnel-de-lassociation">. Une page contacte pour afficher les personnel de l'association.</h3>
+<h3 id="tout-les-information-serraient-modifiable-%C3%A0-partir-du-baccoffice">. tout les information serraient modifiable à partir du baccoffice.</h3>
+<h3 id="les-objectif-pourais-%C3%A8tre-modifier-selons-la-cr%C3%A9ativit%C3%A9-du-devellopeur">. les objectif pourais ètre modifier selons la créativité du devellopeur.</h3>
+<h2 id="4-methodologies">4. METHODOLOGIES</h2>
+<h3 id="d%C3%A9cente-sur-terrain-pour-analyser-les-%C3%A9venement-d%C3%A9clencheur-interne-et-externe">Décente sur terrain pour analyser les évenement déclencheur Interne et Externe</h3>
+<h3 id="la-conception-se-ferat-avec-la-methode-m%C3%A9rise">la conception se ferat avec la methode mérise</h3>
+<h3 id="outil-wordpress-wordpress-a-%C3%A9t%C3%A9-choisie-pour-sa-grand-r%C3%A9putation-que-cest-le-meux-adapter-pour-la-cr%C3%A9ation-des-cite-vitrine-et-blogs-en-plus-cest-gratuit">Outil: Wordpress: Wordpress a été choisie pour sa grand réputation que c'est le meux adapter pour la création des cite vitrine et blogs, en plus c'est gratuit.</h3>
+<h3 id="base-de-donne%C3%A9--mariadb-car-il-est-gratuit">Base de donneé : maria[DB] car il est gratuit</h3>
+<h3 id="puis-on-comnenceras-les-digins-en-utilisent-le-logiciel-adobe-xd-et-illustrator-pour-la-cr%C3%A9ation-des-logos">Puis on comnenceras les digins en utilisent le logiciel Adobe XD et illustrator  pour la création des logos</h3>
+<h3 id="sens-oublier-le-logiciel-xamps-pour-les-packs-de-server-nec%C3%A9ssaire-%C3%A0-la-r%C3%A9alisation-du-logiciel-web-parcequelle-est-gratuit-disponible-sur-linux-comme-windos">Sens oublier le logiciel xamps pour les packs de server necéssaire à la réalisation du logiciel web parcequ'elle est gratuit ,disponible sur linux comme windos</h3>
+<h3 id="language-utiliserphp-qui-est-un-language-r%C3%A9puter-pour-la-cr%C3%A9ation-des-cite-dynamique-cms-mysql">Language Utiliser:php qui est un language réputer pour la création des cite dynamique, CMS, Mysql.</h3>
+<h2 id="5-chronologie-dactivite">5. CHRONOLOGIE D'ACTIVITE</h2>
+<h3 id="on-a-que-6-semaine-pour-realiser-le-projet">on a que 6 semaine pour realiser le projet</h3>
+<h4 id="semaine-1-d%C3%A9cente-dans-lassociation-pour-la-reuqueir-plus-dinformations-sur-lassociaiton">semaine 1: Décente dans l'association pour la reuqueir plus d'informations sur l'associaiton</h4>
+<h4 id="semaine-2-%C3%A9x%C3%A9cution-de-la-methode-merise-cr%C3%A9ation-du-logos-et-digin">semaine 2: éxécution de la methode merise; création du Logos et digin</h4>
+<h4 id="semaine-3-5-construction-du-page">semaine 3-5: construction du page</h4>
+<h4 id="semaine-6-v%C3%A9rification-de-tout-les-fonctionnalit%C3%A9">semaine 6: Vérification de tout les fonctionnalité</h4>
+<h4 id="fin-du-projet">fin du projet</h4>
+<h2 id="7-references-bibliographique">7. REFERENCES BIBLIOGRAPHIQUE</h2>
+<h3 id="page-officiel-de-wordpress-mysql-et-php">page officiel de wordpress, mysql et php.</h3>
+<hr>
+
+</body>
+</html>
